@@ -2,17 +2,14 @@
 #ifndef __MATERIAL_HPP__
 #define __MATERIAL_HPP__
 
-#include <vector>
-#include <memory>
-#include <gl/glew.h>
+#include "Geometry.hpp"
+#include "Shader.hpp"
 
-#include "Texture.hpp"
+#include <memory>
 
 struct Material {
-	GLuint program_id;
-	std::vector<std::shared_ptr<Texture>> textures;
+	std::shared_ptr<Shader> shader;
+	std::shared_ptr<Geometry> geometry;
 };
-
-void LoadShader(std::shared_ptr<Material>&);
 
 #endif

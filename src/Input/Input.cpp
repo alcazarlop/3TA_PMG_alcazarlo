@@ -20,7 +20,7 @@ void Input::BindAction(KeyCode key, InputAction action, std::function<void()> ca
 	KeyMap[token].push_back(callback);
 }
 
- void Input::HandleInput(GLFWwindow* window, int key, int scancode, int action, int mods) {
+void Input::HandleInput(GLFWwindow* window, int key, int scancode, int action, int mods) {
 	auto token = std::make_pair((KeyCode)key, (InputAction)action);
 	for (auto& value : KeyMap[token]) {
 		value();

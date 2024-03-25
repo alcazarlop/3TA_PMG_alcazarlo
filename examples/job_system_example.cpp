@@ -16,7 +16,6 @@ void Bar() {
 	printf("Ejecutanto Bar: %d\n", g_counter);
 }
 
-
 int main(int, char**) {
 
 	Engine::Window* window = Engine::Window::Create("Window Example", 640, 480);

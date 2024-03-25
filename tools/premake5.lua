@@ -28,7 +28,7 @@ workspace "Engine"
 
 project "Motor"
 	kind "StaticLib"
-	defines { "GLEW_STATIC", "TINYOBJLOADER_IMPLEMENTATION", }
+	defines { "GLEW_STATIC", "TINYOBJLOADER_IMPLEMENTATION", "GLM_ENABLE_EXPERIMENTAL" }
 	targetdir "../build/%{cfg.buildcfg}"
 	includedirs { "../include/**", "../deps/**", }
 	files {
@@ -45,7 +45,7 @@ project"00_Demo"
 	targetdir "../build/%{prj.name}/%{cfg.buildcfg}"
 	includedirs { "../include/**", "../deps/**", }
 	libdirs { "../deps/glew/lib/x64", "../deps/glfw/lib/x64", }
-	links { "Motor", "glfw3", "glew32s", "OpenGL32.lib"}
+	links { "Motor", "glfw3", "glew32s", "OpenGL32"}
 	debugargs { _MAIN_SCRIPT_DIR .. "../examples/data" }
 	files "../examples/demo_example.cpp"
 
@@ -55,7 +55,7 @@ project"01_Window"
 	targetdir "../build/%{prj.name}/%{cfg.buildcfg}"
 	includedirs { "../include/**", "../deps/**", }
 	libdirs { "../deps/glew/lib/x64", "../deps/glfw/lib/x64", }
-	links { "Motor", "glfw3", "glew32s", "OpenGL32.lib"}
+	links { "Motor", "glfw3", "glew32s", "OpenGL32"}
 	debugargs { _MAIN_SCRIPT_DIR .. "../examples/data" }
 	files "../examples/window_example.cpp"
 
@@ -65,7 +65,7 @@ project"02_JobSystem"
 	targetdir "../build/%{prj.name}/%{cfg.buildcfg}"
 	includedirs { "../include/**", "../deps/**", }
 	libdirs { "../deps/glew/lib/x64", "../deps/glfw/lib/x64", }
-	links { "Motor", "glfw3", "glew32s", "OpenGL32.lib"}
+	links { "Motor", "glfw3", "glew32s", "OpenGL32"}
 	debugargs { _MAIN_SCRIPT_DIR .. "../examples/data" }
 	files "../examples/job_system_example.cpp"
 
@@ -75,7 +75,7 @@ project"03_Triangle"
 	targetdir "../build/%{prj.name}/%{cfg.buildcfg}"
 	includedirs { "../include/**", "../deps/**", }
 	libdirs { "../deps/glew/lib/x64", "../deps/glfw/lib/x64", }
-	links { "Motor", "glfw3", "glew32s", "OpenGL32.lib"}
+	links { "Motor", "glfw3", "glew32s", "OpenGL32"}
 	debugargs { _MAIN_SCRIPT_DIR .. "../examples/data" }
 	files "../examples/triangle_example.cpp"
 
@@ -85,7 +85,7 @@ project"04_ECS"
 	targetdir "../build/%{prj.name}/%{cfg.buildcfg}"
 	includedirs { "../include/**", "../deps/**", }
 	libdirs { "../deps/glew/lib/x64", "../deps/glfw/lib/x64", }
-	links { "Motor", "glfw3", "glew32s", "OpenGL32.lib"}
+	links { "Motor", "glfw3", "glew32s", "OpenGL32"}
 	debugargs { _MAIN_SCRIPT_DIR .. "../examples/data" }
 	files "../examples/ecs_example.cpp"
 
@@ -95,7 +95,7 @@ project"05_Input"
 	targetdir "../build/%{prj.name}/%{cfg.buildcfg}"
 	includedirs { "../include/**", "../deps/**", }
 	libdirs { "../deps/glew/lib/x64", "../deps/glfw/lib/x64", }
-	links { "Motor", "glfw3", "glew32s", "OpenGL32.lib"}
+	links { "Motor", "glfw3", "glew32s", "OpenGL32"}
 	debugargs { _MAIN_SCRIPT_DIR .. "../examples/data" }
 	files "../examples/input_example.cpp"
 
@@ -105,6 +105,6 @@ project"06_TriangleMany"
 	targetdir "../build/%{prj.name}/%{cfg.buildcfg}"
 	includedirs { "../include/**", "../deps/**", }
 	libdirs { "../deps/glew/lib/x64", "../deps/glfw/lib/x64", }
-	links { "Motor", "glfw3", "glew32s", "OpenGL32.lib"}
+	links { "Motor", "glfw3", "glew32s", "OpenGL32"}
 	debugargs { _MAIN_SCRIPT_DIR .. "../examples/data" }
 	files "../examples/triangle_many_example.cpp"

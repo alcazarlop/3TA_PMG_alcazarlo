@@ -20,7 +20,7 @@ namespace Engine {
 		Input();
 		~Input();
 
-		void BindAction(KeyCode key, InputAction action, const std::function<void()> callback);
+		void BindAction(KeyCode key, InputAction action, std::function<void()> callback);
 		static void HandleInput(GLFWwindow* window, int key, int scancode, int action, int mod);
 		void SetupInput(GLFWwindow*);
 

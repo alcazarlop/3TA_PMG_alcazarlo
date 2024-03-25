@@ -1,14 +1,13 @@
 
-#pragma once
+#ifndef __ECS_HPP__
+#define __ECS_HPP__
 
 #include <functional>
 #include <optional>
 #include <iostream>
 #include <cassert>
 
-#include "TransformComponent.hpp"
-#include "Parent.hpp"
-
+#include "Transform.hpp"
 
 struct BaseComponentList {
 	virtual void Emplace() = 0;
@@ -25,14 +24,13 @@ struct ComponentList : BaseComponentList {
 
 struct ComponentManager {
 	ComponentManager() {
-		AddComponentClass<TransformComponent>();
-		AddComponentClass<ParentComponent>();
+		AddComponentClass<Transform>();
 	}
 
 	~ComponentManager() {}
 
 	template<typename T> void AddComponentClass();
-	template<typename T> void AddEntityComponent(size_t entity);
+	template<typename T> T* AddEntityComponent(size_t entity);
 	template<typename T> T* GetEntityComponent(size_t entity);
 	template<typename T> std::vector<std::optional<T>>& GetComponentList();
 
@@ -57,13 +55,14 @@ template<typename T> void ComponentManager::AddComponentClass() {
 	}
 }
 
-template<typename T> void ComponentManager::AddEntityComponent(size_t entity) {
+template<typename T> T* ComponentManager::AddEntityComponent(size_t entity) {
 	auto hash_code = typeid(T).hash_code();
 	assert(component_list_map.contains(hash_code));
 	auto component_list_iterator = component_list_map.find(hash_code);
 	auto& component_list_ref = *static_cast<ComponentList<T>*>(component_list_iterator->second.get());
 	auto& component_opt = component_list_ref.components.at(entity);
 	component_opt = T();
+	return &component_opt.value();
 }
 
 template<typename T> T* ComponentManager::GetEntityComponent(size_t entity) {
@@ -87,13 +86,4 @@ template<typename T> std::vector<std::optional<T>>& ComponentManager::GetCompone
 	return component_list_ref.components;
 }
 
-size_t ComponentManager::NewEntity() {
-	size_t entity = 0;
-	for (auto& [key, value] : component_list_map) {
-		entity = value->Size();
-		value->Emplace();
-	}
-	AddEntityComponent<ParentComponent>(entity);
-	AddEntityComponent<TransformComponent>(entity);
-	return entity;
-}
+#endif
