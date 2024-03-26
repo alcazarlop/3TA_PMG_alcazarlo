@@ -94,4 +94,8 @@ std::shared_ptr<Geometry> ResourceManager::CreateGeometry() {
 	return new_geometry;
 }
 
+std::shared_ptr<Geometry> ResourceManager::LoadMesh(const char* path) {
+
+	return std::make_shared<Geometry>();
+}
 

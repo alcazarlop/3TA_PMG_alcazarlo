@@ -20,6 +20,8 @@ public:
 	std::shared_ptr<Shader> CreateShader(const char* vs, const char* fs);
 	std::shared_ptr<Geometry> CreateGeometry();
 
+	std::shared_ptr<Geometry> LoadMesh(const char* path);
+
 };
 
 

@@ -13,6 +13,7 @@
 #include <string>
 
 #include "gtc/matrix_transform.hpp"
+#include "imgui.h"
 
 int main(int, char**) {
 
@@ -42,11 +43,11 @@ int main(int, char**) {
 	input.SetupInput(window->window());
 	while (!window->isOpen()) {
 
+		window->BeginFrame();
 		window->Clear();
 
 		render.exec(component_manager, camera);
 
-		window->Swap();
 		window->EndFrame();
 	}
 

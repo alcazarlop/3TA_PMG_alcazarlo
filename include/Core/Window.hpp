@@ -16,12 +16,11 @@ namespace Engine {
 		~Window();
 		Window(Window&);
 		Window(Window&&);
-		Window(const Window&) = delete;
 
 		uint32_t isOpen() const;
 		static Window* Create(const char* title, uint32_t screnn_w, uint32_t screen_h);
 
-		void Swap() const;
+		void BeginFrame() const;
 		void Clear() const;
 		void EndFrame() const;
 
@@ -29,6 +28,7 @@ namespace Engine {
 
 	private:
 		Window();
+		Window(const Window&) = delete;
 		GLFWwindow* window_;
 
 	};
